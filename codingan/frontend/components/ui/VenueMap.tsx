@@ -15,7 +15,7 @@ async function geocodeAddress(address: string): Promise<{ lat: number; lng: numb
     const encoded = encodeURIComponent(address);
     const res = await fetch(
       `https://nominatim.openstreetmap.org/search?q=${encoded}&format=json&limit=1&countrycodes=id`,
-      { headers: { 'User-Agent': 'TicketFlow/1.0' } }
+      { headers: { 'User-Agent': 'SynapseTick/1.0' } }
     );
     const data = await res.json();
     if (data && data.length > 0) {
@@ -24,7 +24,7 @@ async function geocodeAddress(address: string): Promise<{ lat: number; lng: numb
     // Retry without country code restriction
     const res2 = await fetch(
       `https://nominatim.openstreetmap.org/search?q=${encoded}&format=json&limit=1`,
-      { headers: { 'User-Agent': 'TicketFlow/1.0' } }
+      { headers: { 'User-Agent': 'SynapseTick/1.0' } }
     );
     const data2 = await res2.json();
     if (data2 && data2.length > 0) {

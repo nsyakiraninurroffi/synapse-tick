@@ -25,7 +25,7 @@ class TicketFlowApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'TicketFlow Staff',
+      title: 'SynapseTick Staff',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.darkTheme,
       home: Consumer<AuthProvider>(

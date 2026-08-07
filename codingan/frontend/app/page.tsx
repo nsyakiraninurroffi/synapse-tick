@@ -379,7 +379,7 @@ export default function HomePage() {
         <div className="text-center max-w-2xl mx-auto mb-14">
           <span className="section-label mb-4">⚡ Teknologi Terdepan</span>
           <h2 className="text-3xl sm:text-5xl font-black text-[hsl(var(--text-primary))] mt-2 text-balance leading-tight">
-            Mengapa Memilih{' '}<span className="gradient-text">TicketFlow?</span>
+            Mengapa Memilih{' '}<span className="gradient-text">SynapseTick?</span>
           </h2>
           <p className="text-sm sm:text-base text-[hsl(var(--text-secondary))] mt-4">
             Infrastruktur enterprise — dirancang untuk skala besar, keamanan tinggi, dan pengalaman terbaik.
@@ -410,7 +410,7 @@ export default function HomePage() {
         <div className="text-center max-w-2xl mx-auto mb-14">
           <span className="section-label mb-4">💬 Testimoni</span>
           <h2 className="text-3xl sm:text-5xl font-black text-[hsl(var(--text-primary))] mt-2 text-balance leading-tight">
-            Kata Mereka Tentang{' '}<span className="gradient-text">TicketFlow</span>
+            Kata Mereka Tentang{' '}<span className="gradient-text">SynapseTick</span>
           </h2>
         </div>
 

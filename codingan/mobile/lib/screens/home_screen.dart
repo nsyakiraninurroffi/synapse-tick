@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: const Icon(Icons.confirmation_number_rounded, color: Colors.white, size: 16),
             ),
             const SizedBox(width: 8),
-            const Text('TicketFlow'),
+            const Text('SynapseTick'),
           ],
         ),
         actions: [

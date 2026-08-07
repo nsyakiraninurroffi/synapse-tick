@@ -118,7 +118,7 @@ class _LoginScreenState extends State<LoginScreen>
                             ),
                             const SizedBox(height: 14),
                             GradientText(
-                              'TicketFlow',
+                              'SynapseTick',
                               style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w900, letterSpacing: -1),
                             ),
                             const SizedBox(height: 4),

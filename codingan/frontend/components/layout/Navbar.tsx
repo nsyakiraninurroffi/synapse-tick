@@ -103,7 +103,7 @@ export default function Navbar() {
               <div className="w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 shadow-glow-sm group-hover:shadow-glow bg-gradient-to-br from-brand-500 to-brand-700">
                 <Ticket className="w-4 h-4 text-white" strokeWidth={2.5} />
               </div>
-              <span className="text-lg font-black gradient-text tracking-tight">TicketFlow</span>
+              <span className="text-lg font-black gradient-text tracking-tight">SynapseTick</span>
             </Link>
 
             {/* Desktop Nav Links */}

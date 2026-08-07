@@ -36,7 +36,7 @@ export default function Footer() {
               <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center text-white shadow-glow-sm group-hover:shadow-glow transition-all">
                 <Ticket className="w-4.5 h-4.5" />
               </div>
-              <span className="text-xl font-black gradient-text tracking-tight">TicketFlow</span>
+              <span className="text-xl font-black gradient-text tracking-tight">SynapseTick</span>
             </Link>
             <p className="text-sm text-[hsl(var(--text-secondary))] leading-relaxed max-w-xs">
               Platform SaaS Ticketing #1 Indonesia. Beli tiket event, kelola booth vendor, dan scan gate — semua dalam satu ekosistem cashless.
@@ -75,7 +75,7 @@ export default function Footer() {
 
           {/* Organizer Links */}
           <div className="space-y-4">
-            <h4 className="text-xs font-bold text-[hsl(var(--text-primary))] uppercase tracking-wider">Untuk Organizer</h4>
+            <h4 className="text-xs font-bold text-[hsl(var(--text-primary))] uppercase tracking-wider">Organizer</h4>
             <ul className="space-y-2.5">
               {footerLinks.organizer.map((link) => (
                 <li key={link.label}>
@@ -105,11 +105,11 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-[hsl(var(--border-subtle))] flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-[hsl(var(--text-muted))]">
-            © {new Date().getFullYear()} TicketFlow. All rights reserved.
+            © {new Date().getFullYear()} SynapseTick. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1.5 text-xs text-[hsl(var(--text-muted))]">
-              <Mail className="w-3.5 h-3.5" /> support@ticketflow.id
+              <Mail className="w-3.5 h-3.5" /> support@synapsetick.id
             </span>
             <span className="flex items-center gap-1.5 text-xs text-[hsl(var(--text-muted))]">
               <MapPin className="w-3.5 h-3.5" /> Jakarta, Indonesia

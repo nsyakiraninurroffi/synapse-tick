@@ -124,7 +124,7 @@ export default function LoginPage() {
             <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center text-white shadow-glow-sm">
               <Ticket className="w-4.5 h-4.5" />
             </div>
-            <span className="text-xl font-black gradient-text tracking-tight">TicketFlow</span>
+            <span className="text-xl font-black gradient-text tracking-tight">SynapseTick</span>
           </Link>
 
           <div>

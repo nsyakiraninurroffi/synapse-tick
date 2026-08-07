@@ -11,12 +11,12 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const sora = Sora({ subsets: ['latin'], variable: '--font-sora', weight: ['400', '500', '600', '700', '800'] });
 
 export const metadata: Metadata = {
-  title: 'TicketFlow — Platform Tiket Event Premium',
+  title: 'SynapseTick — Platform Tiket Event Premium',
   description: 'Platform SaaS Ticketing Event Modern dengan Teknologi Cashless NFC/QR, Gate Access Control, dan Virtual Queue.',
-  keywords: ['tiket event', 'ticketing', 'gate access', 'cashless', 'e-ticket'],
-  authors: [{ name: 'TicketFlow Team' }],
+  keywords: ['tiket event', 'ticketing', 'gate access', 'cashless', 'e-ticket', 'synapse tick'],
+  authors: [{ name: 'Nesya Kirani Nurroffi' }],
   openGraph: {
-    title: 'TicketFlow — Platform Tiket Event Premium',
+    title: 'SynapseTick — Platform Tiket Event Premium',
     description: 'Beli tiket event favoritmu dengan mudah, aman, dan cashless.',
     type: 'website',
   },

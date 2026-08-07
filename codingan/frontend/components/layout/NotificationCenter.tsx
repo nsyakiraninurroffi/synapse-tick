@@ -17,7 +17,7 @@ const DEFAULT_NOTIFICATIONS: NotificationItem[] = [
   {
     id: 'notif-1',
     type: 'system',
-    title: 'Selamat Datang di TicketFlow!',
+    title: 'Selamat Datang di SynapseTick!',
     message: 'Nikmati kemudahan beli tiket konser, e-wallet cashless, dan scan gate instan.',
     timestamp: new Date().toISOString(),
     isRead: false,

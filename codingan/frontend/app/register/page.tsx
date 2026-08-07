@@ -177,7 +177,7 @@ export default function RegisterPage() {
             <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center text-white shadow-glow-sm">
               <Ticket className="w-4 h-4" />
             </div>
-            <span className="text-lg font-black gradient-text">TicketFlow</span>
+            <span className="text-lg font-black gradient-text">SynapseTick</span>
           </Link>
 
           <div>
