@@ -1,0 +1,16 @@
+name: com.ticketflow.mobile
+description: "TicketFlow Gate Scanner & Vendor Booth Mobile App"
+# Prevents accidental publishing to pub.dev
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+  flutter: ">=3.19.0"
+
+# Android specific configurations
+# See: https://developer.android.com/reference/android/Manifest.permission
+
+# iOS specific configurations
+# See: https://developer.apple.com/documentation/bundleresources/information_property_list
