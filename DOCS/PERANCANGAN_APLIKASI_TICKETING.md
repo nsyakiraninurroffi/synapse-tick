@@ -1,4 +1,4 @@
-# Laporan Perancangan Aplikasi TicketFlow SaaS
+# Laporan Perancangan Aplikasi SynapseTick SaaS
 **Dokumen Spesifikasi & Design Sistem (System Design Document)**
 
 ---
@@ -12,7 +12,7 @@ Pasar hiburan, konser musik, dan seminar di Indonesia berkembang sangat pesat. N
 - Transaksi jual-beli makanan/merchandise di lokasi acara yang rumit akibat uang tunai dan kembalian.
 
 ### 1.2 Tujuan Sistem
-**TicketFlow** dirancang sebagai platform **SaaS (Software-as-a-Service) Ticketing & Event Management** berbasis Multi-Tenant yang menyediakan solusi end-to-end:
+**SynapseTick** dirancang sebagai platform **SaaS (Software-as-a-Service) Ticketing & Event Management** berbasis Multi-Tenant yang menyediakan solusi end-to-end:
 - **E-Ticketing Aman**: Tiket digital dengan *Dynamic QR Code AES-256* yang diperbarui otomatis.
 - **Verifikasi Fast & Offline Gate**: Gate Scanner berbasis Web & Mobile dengan dukungan *Offline-First* (SQLite).
 - **Ekosistem Cashless Venue**: Dompet digital (*E-Wallet*) dan integrasi *NFC Wristband* untuk transaksi cepat di booth vendor.

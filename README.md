@@ -1,4 +1,4 @@
-# 🎟️ TicketFlow SaaS — Full-Stack Event Ticketing & Cashless Platform
+# 🧠 SynapseTick — Full-Stack Event Ticketing & Cashless Platform
 
 ![Version](https://img.shields.io/badge/version-4.0.0-blue.svg)
 ![Next.js](https://img.shields.io/badge/Next.js-14.2.5-black.svg)
@@ -13,7 +13,7 @@ Platform SaaS **E-Ticketing & Management Event** berbasis Multi-Tenant dengan en
 ## 📁 Struktur Folder Project
 
 ```
-Project Ticketing SaaS/
+synapse-tick/
 ├── DOCS/                               ← Dokumen Perancangan System Design (Tugas 1)
 │   └── PERANCANGAN_APLIKASI_TICKETING.md
 └── codingan/
@@ -64,4 +64,4 @@ npm run dev                 # Berjalan di http://localhost:3000
 ---
 
 ## 📄 Lisensi
-Hak Cipta © 2026 TicketFlow SaaS. Dikembangkan untuk Tugas Perancangan & Inisiasi Project Git.
+Hak Cipta © 2026 SynapseTick SaaS. Dikembangkan oleh **N. Syakirani Nur Roffi** (`https://github.com/nsyakiraninurroffi/synapse-tick`).
