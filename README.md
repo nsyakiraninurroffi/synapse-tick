@@ -64,4 +64,4 @@ npm run dev                 # Berjalan di http://localhost:3000
 ---
 
 ## 📄 Lisensi
-Hak Cipta © 2026 SynapseTick SaaS. Dikembangkan oleh **N. Syakirani Nur Roffi** (`https://github.com/nsyakiraninurroffi/synapse-tick`).
+Hak Cipta © 2026 SynapseTick SaaS. Dikembangkan oleh **Nesya Kirani Nurroffi** (`https://github.com/nsyakiraninurroffi/synapse-tick`).
