@@ -6,6 +6,7 @@ import { eventAPI, promoAPI } from '@/lib/api';
 import { useAuthStore } from '@/store/authStore';
 import { useCheckout } from '@/lib/hooks/useCheckout';
 import { VenueMap } from '@/components/ui/VenueMap';
+import { FloorPlan } from '@/components/ui/FloorPlan';
 import {
   MapPin, Calendar, Users, Ticket, Clock, Shield, Minus, Plus,
   CheckCircle, AlertCircle, Loader2, ArrowLeft, Zap, Lock, Tag,
@@ -254,6 +255,18 @@ export default function EventDetailPage() {
               </div>
             )}
           </div>
+
+          {/* Visual 2D Venue Seating Map */}
+          {event.seats && event.seats.length > 0 && (
+            <FloorPlan
+              seats={event.seats}
+              selectedSeatId={selectedSeat?.id}
+              onSelectSeat={(seat) => {
+                setSelectedSeat(seat);
+                setQuantity(1);
+              }}
+            />
+          )}
 
           {/* Seat Categories & Zone Selector */}
           <div className="card p-6 sm:p-8 space-y-4">

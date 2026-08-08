@@ -105,10 +105,13 @@ export default function OrganizerDashboard() {
             Pantau penjualan tiket dan performa event secara real-time
           </p>
         </div>
-        <div className="flex items-center gap-3">
-          <button onClick={fetchData} className="btn-secondary btn-sm">
-            <RefreshCw className="w-4 h-4" /> Refresh
-          </button>
+        <div className="flex items-center gap-3 flex-wrap">
+          <Link href="/dashboard/organizer/withdrawal" className="btn-secondary btn-sm text-emerald-400 border-emerald-500/30">
+            <DollarSign className="w-4 h-4 text-emerald-500" /> Tarik Dana
+          </Link>
+          <Link href="/dashboard/organizer/promo" className="btn-secondary btn-sm">
+            <Gift className="w-4 h-4 text-purple-400" /> Kode Promo
+          </Link>
           <Link href="/events/create" className="btn-primary btn-sm">
             <Plus className="w-4 h-4" /> Buat Event Baru
           </Link>
