@@ -45,6 +45,12 @@ const demoUsers = [
     role: 'vendor',
     noHp: '081200000004',
   },
+  {
+    nama: 'Demo Super Admin',
+    email: 'admin@demo.com',
+    role: 'superadmin',
+    noHp: '081200000005',
+  },
 ];
 
 async function main() {

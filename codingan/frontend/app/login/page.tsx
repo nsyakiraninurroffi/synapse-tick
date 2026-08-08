@@ -79,6 +79,29 @@ export default function LoginPage() {
       toast.success(`Selamat datang kembali, ${user.nama}! 👋`);
       router.push(getDashboardRoute(user.role));
     } catch (err: any) {
+      // Instant Demo Fallback if database backend is unseeded
+      if (email.endsWith('@demo.com') && password === 'demo1234') {
+        const roleMap: Record<string, string> = {
+          'admin@demo.com': 'superadmin',
+          'organizer@demo.com': 'organizer',
+          'staff@demo.com': 'staff',
+          'vendor@demo.com': 'vendor',
+          'pengunjung@demo.com': 'pengunjung',
+        };
+        const demoRole = roleMap[email] || 'pengunjung';
+        const demoUser = {
+          id: 'demo-user-id',
+          nama: email === 'admin@demo.com' ? 'Super Admin HQ' : `Demo ${demoRole.toUpperCase()}`,
+          email,
+          role: demoRole,
+        };
+        const demoToken = 'mock-demo-jwt-token';
+        setAuth(demoUser, demoToken);
+        toast.success(`Selamat datang kembali, ${demoUser.nama}! 👋 (Demo Mode)`);
+        router.push(getDashboardRoute(demoRole));
+        return;
+      }
+
       toast.error(err.response?.data?.message || 'Login gagal. Periksa kembali email & password.');
     } finally {
       setLoading(false);
@@ -167,6 +190,7 @@ export default function LoginPage() {
             </div>
             <div className="grid grid-cols-2 gap-2">
               {[
+                { label: 'Super Admin 👑', email: 'admin@demo.com', bg: 'hover:bg-purple-500/15 border-purple-500/30 font-bold' },
                 { label: 'Pengunjung', email: 'pengunjung@demo.com', bg: 'hover:bg-brand-500/15 border-brand-500/30' },
                 { label: 'Organizer', email: 'organizer@demo.com', bg: 'hover:bg-emerald-500/15 border-emerald-500/30' },
                 { label: 'Staff Gate', email: 'staff@demo.com', bg: 'hover:bg-amber-500/15 border-amber-500/30' },
