@@ -136,6 +136,11 @@ export function FloorPlan({ seats, selectedSeatId, onSelectSeat }: FloorPlanProp
                   <span className={clsx('px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider', style.badge)}>
                     {seat.kategori}
                   </span>
+                  {seat.tersedia > 0 && seat.tersedia <= 10 && (
+                    <span className="badge-error text-[10px] py-0 px-1.5 animate-pulse font-bold">
+                      ⚡ Sisa {seat.tersedia}!
+                    </span>
+                  )}
                   {isSelected && (
                     <CheckCircle2 className="w-4 h-4 text-brand-400 fill-brand-500/20" />
                   )}
