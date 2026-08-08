@@ -27,6 +27,11 @@ const navLinks = [
 /* ── Role-specific dashboard menu items ── */
 function getRoleDashboardItems(role: string) {
   switch (role) {
+    case 'superadmin':
+      return [
+        { href: '/dashboard/admin', label: 'Super Admin Governance', icon: LayoutDashboard, color: 'text-purple-500' },
+        { href: '/dashboard/organizer', label: 'Overview Organizer', icon: CalendarDays, color: 'text-brand-500' },
+      ];
     case 'organizer':
       return [
         { href: '/dashboard/organizer', label: 'Dashboard Organizer', icon: LayoutDashboard, color: 'text-brand-500' },
