@@ -10,13 +10,17 @@ interface SeatZone {
   kategori: string;
   harga: number;
   kuota: number;
+  terjual?: number;
   tersedia: number;
+  deskripsi?: string;
+  benefits?: string[];
+  warna?: string;
 }
 
 interface FloorPlanProps {
-  seats: SeatZone[];
+  seats: any[];
   selectedSeatId?: string;
-  onSelectSeat: (seat: SeatZone) => void;
+  onSelectSeat: (seat: any) => void;
 }
 
 const zoneColorMap: Record<string, { bg: string; border: string; badge: string; glow: string }> = {
