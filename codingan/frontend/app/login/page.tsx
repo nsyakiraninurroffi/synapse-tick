@@ -77,7 +77,8 @@ export default function LoginPage() {
       const { user, token } = res.data.data;
       setAuth(user, token);
       toast.success(`Selamat datang kembali, ${user.nama}! 👋`);
-      router.push(getDashboardRoute(user.role));
+      const targetRoute = getDashboardRoute(user.role);
+      window.location.href = targetRoute;
     } catch (err: any) {
       // Instant Demo Fallback if database backend is unseeded
       if (email.endsWith('@demo.com') && password === 'demo1234') {
@@ -98,7 +99,8 @@ export default function LoginPage() {
         const demoToken = 'mock-demo-jwt-token';
         setAuth(demoUser, demoToken);
         toast.success(`Selamat datang kembali, ${demoUser.nama}! 👋 (Demo Mode)`);
-        router.push(getDashboardRoute(demoRole));
+        const targetRoute = getDashboardRoute(demoRole);
+        window.location.href = targetRoute;
         return;
       }
 
