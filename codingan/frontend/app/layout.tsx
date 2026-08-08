@@ -25,6 +25,20 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="id" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.addEventListener('error', function(e) {
+                if (e.message && (e.message.indexOf('Loading chunk') !== -1 || e.message.indexOf('ChunkLoadError') !== -1)) {
+                  console.warn('[SynapseTick] Chunk load timeout detected, auto-reloading...');
+                  window.location.reload();
+                }
+              });
+            `,
+          }}
+        />
+      </head>
       <body className={`${inter.variable} ${sora.variable} font-sans antialiased bg-hero min-h-screen`}>
         <NextAuthProvider>
           <ThemeProvider>
