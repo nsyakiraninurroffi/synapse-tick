@@ -49,6 +49,8 @@ npm run dev                 # Berjalan di http://localhost:3001
 ```bash
 cd codingan/frontend
 npm install
+# Jika terjadi error 500 /_next/static/chunks/fallback, bersihkan cache:
+# Windows: rmdir /s /q .next   (atau di PowerShell: Remove-Item -Recurse -Force .next)
 npm run dev                 # Berjalan di http://localhost:3000
 ```
 
