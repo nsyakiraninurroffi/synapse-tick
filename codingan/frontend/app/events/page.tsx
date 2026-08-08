@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { eventAPI } from '@/lib/api';
 import Link from 'next/link';
-import { MapPin, Calendar, Users, ArrowRight, Ticket, Search, Grid, List, Filter, DollarSign, SlidersHorizontal } from 'lucide-react';
+import { MapPin, Calendar, Users, ArrowRight, Ticket, Search, Grid, List, DollarSign } from 'lucide-react';
 import { format, isToday, isThisWeek, isThisMonth } from 'date-fns';
 import { id } from 'date-fns/locale';
 import clsx from 'clsx';
@@ -57,6 +57,19 @@ export default function EventsPage() {
     fetchEvents(search, 1);
   };
 
+  const filteredEvents = events.filter((event) => {
+    if (dateFilter === 'today' && !isToday(new Date(event.tanggal))) return false;
+    if (dateFilter === 'weekend' && !isThisWeek(new Date(event.tanggal))) return false;
+    if (dateFilter === 'month' && !isThisMonth(new Date(event.tanggal))) return false;
+
+    const minPrice = event.seats && event.seats.length > 0 ? Math.min(...event.seats.map((s) => Number(s.harga))) : 0;
+    if (priceFilter === 'under250' && minPrice >= 250000) return false;
+    if (priceFilter === '250to1m' && (minPrice < 250000 || minPrice > 1000000)) return false;
+    if (priceFilter === 'above1m' && minPrice <= 1000000) return false;
+
+    return true;
+  });
+
   return (
     <div className="pt-20 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
       {/* Header */}
@@ -107,6 +120,8 @@ export default function EventsPage() {
             <List className="w-4 h-4" />
           </button>
         </div>
+      </div>
+
       {/* Filter Pills Bar */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 p-4 rounded-2xl bg-[hsl(var(--bg-secondary))] border border-[hsl(var(--border-subtle))]">
         {/* Date Filters */}
@@ -165,18 +180,7 @@ export default function EventsPage() {
       {/* Results Counter */}
       {!loading && (
         <p className="text-xs text-[hsl(var(--text-muted))]">
-          Menampilkan <span className="font-bold text-[hsl(var(--text-primary))]">{events.filter((event) => {
-            if (dateFilter === 'today' && !isToday(new Date(event.tanggal))) return false;
-            if (dateFilter === 'weekend' && !isThisWeek(new Date(event.tanggal))) return false;
-            if (dateFilter === 'month' && !isThisMonth(new Date(event.tanggal))) return false;
-
-            const minPrice = event.seats && event.seats.length > 0 ? Math.min(...event.seats.map((s) => Number(s.harga))) : 0;
-            if (priceFilter === 'under250' && minPrice >= 250000) return false;
-            if (priceFilter === '250to1m' && (minPrice < 250000 || minPrice > 1000000)) return false;
-            if (priceFilter === 'above1m' && minPrice <= 1000000) return false;
-
-            return true;
-          }).length}</span> dari{' '}
+          Menampilkan <span className="font-bold text-[hsl(var(--text-primary))]">{filteredEvents.length}</span> dari{' '}
           <span className="font-bold text-[hsl(var(--text-primary))]">{pagination.total}</span> event aktif
         </p>
       )}
@@ -189,35 +193,17 @@ export default function EventsPage() {
         )}>
           {[...Array(6)].map((_, i) => <SkeletonEventCard key={i} />)}
         </div>
-      ) : (() => {
-        const filteredList = events.filter((event) => {
-          if (dateFilter === 'today' && !isToday(new Date(event.tanggal))) return false;
-          if (dateFilter === 'weekend' && !isThisWeek(new Date(event.tanggal))) return false;
-          if (dateFilter === 'month' && !isThisMonth(new Date(event.tanggal))) return false;
-
-          const minPrice = event.seats && event.seats.length > 0 ? Math.min(...event.seats.map((s) => Number(s.harga))) : 0;
-          if (priceFilter === 'under250' && minPrice >= 250000) return false;
-          if (priceFilter === '250to1m' && (minPrice < 250000 || minPrice > 1000000)) return false;
-          if (priceFilter === 'above1m' && minPrice <= 1000000) return false;
-
-          return true;
-        });
-
-        if (filteredList.length === 0) {
-          return (
-            <div className="card p-12 text-center space-y-3">
-              <Ticket className="w-12 h-12 text-[hsl(var(--text-muted))] mx-auto" />
-              <p className="text-base font-bold text-[hsl(var(--text-primary))]">Tidak Ada Event Sesuai Filter</p>
-              <p className="text-xs text-[hsl(var(--text-muted))]">Coba ganti pilihan tanggal atau harga filter di atas.</p>
-              <button onClick={() => { setDateFilter('all'); setPriceFilter('all'); setSearch(''); fetchEvents('', 1); }} className="btn-ghost btn-sm">Reset Filter</button>
-            </div>
-          );
-        }
-
-        return viewMode === 'grid' ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredList.map((event, idx) => {
-              const minPrice = event.seats.length > 0 ? Math.min(...event.seats.map((s) => Number(s.harga))) : 0;
+      ) : filteredEvents.length === 0 ? (
+        <div className="card p-12 text-center space-y-3">
+          <Ticket className="w-12 h-12 text-[hsl(var(--text-muted))] mx-auto" />
+          <p className="text-base font-bold text-[hsl(var(--text-primary))]">Tidak Ada Event Sesuai Filter</p>
+          <p className="text-xs text-[hsl(var(--text-muted))]">Coba ganti pilihan tanggal atau harga filter di atas.</p>
+          <button onClick={() => { setDateFilter('all'); setPriceFilter('all'); setSearch(''); fetchEvents('', 1); }} className="btn-ghost btn-sm">Reset Filter</button>
+        </div>
+      ) : viewMode === 'grid' ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredEvents.map((event, idx) => {
+            const minPrice = event.seats.length > 0 ? Math.min(...event.seats.map((s) => Number(s.harga))) : 0;
             const totalSold = event._count?.tickets || 0;
             const totalCap = event.seats.reduce((sum, s) => sum + Number(s.kuota), 0);
             const occupancy = totalCap > 0 ? (totalSold / totalCap) * 100 : 0;
@@ -280,57 +266,57 @@ export default function EventsPage() {
             );
           })}
         </div>
-        return (
-          <div className="space-y-3">
-            {filteredList.map((event, idx) => {
-              const minPrice = event.seats.length > 0 ? Math.min(...event.seats.map((s) => Number(s.harga))) : 0;
-              return (
-                <motion.div
-                  key={event.id}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: idx * 0.04 }}
-                >
-                  <Link href={`/event/${event.id}`} className="group block">
-                    <div className="card-hover p-4 flex items-center gap-4">
-                      <div className="w-20 h-20 rounded-xl overflow-hidden bg-surface-800 border flex-shrink-0">
-                        {event.logoUrl ? (
-                          <img src={event.logoUrl} alt={event.namaEvent} className="w-full h-full object-cover" />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center bg-brand-900/40">
-                            <Ticket className="w-8 h-8 text-brand-500/40" />
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-bold text-base text-[hsl(var(--text-primary))] group-hover:text-brand-500 transition-colors truncate">
-                          {event.namaEvent}
-                        </h3>
-                        <div className="flex flex-wrap items-center gap-3 text-xs text-[hsl(var(--text-secondary))] mt-1">
-                          <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5 text-brand-500" />
-                            {format(new Date(event.tanggal), 'd MMM yyyy', { locale: id })}
-                          </span>
-                          <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-accent-500" />
-                            <span className="truncate">{event.lokasi}</span>
-                          </span>
+      ) : (
+        /* List View */
+        <div className="space-y-3">
+          {filteredEvents.map((event, idx) => {
+            const minPrice = event.seats.length > 0 ? Math.min(...event.seats.map((s) => Number(s.harga))) : 0;
+            return (
+              <motion.div
+                key={event.id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: idx * 0.04 }}
+              >
+                <Link href={`/event/${event.id}`} className="group block">
+                  <div className="card-hover p-4 flex items-center gap-4">
+                    <div className="w-20 h-20 rounded-xl overflow-hidden bg-surface-800 border flex-shrink-0">
+                      {event.logoUrl ? (
+                        <img src={event.logoUrl} alt={event.namaEvent} className="w-full h-full object-cover" />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center bg-brand-900/40">
+                          <Ticket className="w-8 h-8 text-brand-500/40" />
                         </div>
-                      </div>
+                      )}
+                    </div>
 
-                      <div className="text-right flex-shrink-0">
-                        <p className="text-sm font-black text-brand-600 dark:text-brand-400">Rp {minPrice.toLocaleString('id-ID')}</p>
-                        <span className="text-xs text-brand-600 dark:text-brand-400 font-bold flex items-center justify-end gap-1 mt-1">
-                          Pesan <ArrowRight className="w-3.5 h-3.5" />
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-bold text-base text-[hsl(var(--text-primary))] group-hover:text-brand-500 transition-colors truncate">
+                        {event.namaEvent}
+                      </h3>
+                      <div className="flex flex-wrap items-center gap-3 text-xs text-[hsl(var(--text-secondary))] mt-1">
+                        <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5 text-brand-500" />
+                          {format(new Date(event.tanggal), 'd MMM yyyy', { locale: id })}
+                        </span>
+                        <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-accent-500" />
+                          <span className="truncate">{event.lokasi}</span>
                         </span>
                       </div>
                     </div>
-                  </Link>
-                </motion.div>
-              );
-            })}
-          </div>
-        );
-      })()}
+
+                    <div className="text-right flex-shrink-0">
+                      <p className="text-sm font-black text-brand-600 dark:text-brand-400">Rp {minPrice.toLocaleString('id-ID')}</p>
+                      <span className="text-xs text-brand-600 dark:text-brand-400 font-bold flex items-center justify-end gap-1 mt-1">
+                        Pesan <ArrowRight className="w-3.5 h-3.5" />
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            );
+          })}
+        </div>
+      )}
 
       {/* Pagination Controls */}
       {pagination.totalPages > 1 && (
